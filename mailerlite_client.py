@@ -10,20 +10,18 @@ class MailerLiteClient:
     RATE_LIMIT_BUFFER = 5  # pause when fewer than this many requests remain
 
     def __init__(self, api_key: str):
-        self.client = httpx.Client(
-            base_url=self.BASE_URL,
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            timeout=30.0,
-        )
+        self.headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+        self.client = httpx.Client(timeout=30.0)
 
     def _request(self, method: str, path: str, **kwargs) -> dict:
         """Make an API request with rate-limit handling and retries."""
+        url = f"{self.BASE_URL}{path}"
         for attempt in range(self.MAX_RETRIES):
-            response = self.client.request(method, path, **kwargs)
+            response = self.client.request(method, url, headers=self.headers, **kwargs)
 
             # Handle rate limiting
             remaining = response.headers.get("X-RateLimit-Remaining")
@@ -46,12 +44,12 @@ class MailerLiteClient:
     # ── Campaigns ──────────────────────────────────────────────
 
     def list_campaigns(self, status: str = "sent", limit: int = 25) -> list[dict]:
-        """List campaigns filtered by status: draft, ready, sent."""
-        data = self._request("GET", "/campaigns", params={
-            "filter[status]": status,
-            "limit": limit,
-        })
-        return data.get("data", [])
+        """List campaigns, optionally filtered by status."""
+        data = self._request("GET", "/campaigns")
+        campaigns = data.get("data", [])
+        if status:
+            campaigns = [c for c in campaigns if c.get("status") == status]
+        return campaigns[:limit]
 
     def get_campaign(self, campaign_id: str) -> dict:
         """Get a single campaign with stats."""
@@ -178,19 +176,16 @@ class MailerLiteClient:
 
     def list_subscribers(self, status: str = "active", limit: int = 100) -> list[dict]:
         """List subscribers filtered by status."""
-        data = self._request("GET", "/subscribers", params={
-            "filter[status]": status,
-            "limit": limit,
-        })
-        return data.get("data", [])
+        data = self._request("GET", "/subscribers")
+        subscribers = data.get("data", [])
+        if status:
+            subscribers = [s for s in subscribers if s.get("status") == status]
+        return subscribers[:limit]
 
     def get_subscriber_count(self) -> int:
         """Get total active subscriber count."""
-        data = self._request("GET", "/subscribers", params={
-            "filter[status]": "active",
-            "limit": 0,
-        })
-        return data.get("total", 0)
+        data = self._request("GET", "/subscribers")
+        return data.get("total", len(data.get("data", [])))
 
     # ── Groups ─────────────────────────────────────────────────
 
