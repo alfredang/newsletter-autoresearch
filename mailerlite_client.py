@@ -74,8 +74,8 @@ class MailerLiteClient:
             "type": campaign_type,
             "emails": [{
                 "subject": subject,
-                "from_name": sender_name or "Newsletter",
-                "from": sender_email or "newsletter@example.com",
+                "from_name": sender_name or "Tertiary Infotech Academy Pte Ltd",
+                "from": sender_email or "newsletter@tertiaryinfotech.com",
                 "content": content_html,
             }],
         }
@@ -111,14 +111,14 @@ class MailerLiteClient:
             "emails": [
                 {
                     "subject": subject_a,
-                    "from_name": sender_name or "Newsletter",
-                    "from": sender_email or "newsletter@example.com",
+                    "from_name": sender_name or "Tertiary Infotech Academy Pte Ltd",
+                    "from": sender_email or "newsletter@tertiaryinfotech.com",
                     "content": content_html,
                 },
                 {
                     "subject": subject_b,
-                    "from_name": sender_name or "Newsletter",
-                    "from": sender_email or "newsletter@example.com",
+                    "from_name": sender_name or "Tertiary Infotech Academy Pte Ltd",
+                    "from": sender_email or "newsletter@tertiaryinfotech.com",
                     "content": content_html,
                 },
             ],
