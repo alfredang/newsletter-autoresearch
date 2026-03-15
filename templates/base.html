@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ subject }}</title>
+  <!--[if !mso]><!-->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #333333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+    .header {
+      padding: 32px 24px 16px;
+      text-align: center;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: #111111;
+    }
+    .preview-text {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+    }
+    .content {
+      padding: 24px;
+    }
+    .section {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #eeeeee;
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111111;
+    }
+    .section p {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: #555555;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #2563eb;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      margin: 8px 0;
+    }
+    .cta-button:hover {
+      background-color: #1d4ed8;
+    }
+    .footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #999999;
+      background-color: #fafafa;
+    }
+    .footer a {
+      color: #999999;
+    }
+    @media only screen and (max-width: 620px) {
+      .container {
+        width: 100% !important;
+      }
+      .content {
+        padding: 16px !important;
+      }
+    }
+  </style>
+  <!--<![endif]-->
+</head>
+<body>
+  <!-- Preview text (hidden, shown in email clients) -->
+  <div class="preview-text">{{ preview_text }}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+
+  <div class="container">
+    <div class="header">
+      <h1>{{ newsletter_name | default("Newsletter") }}</h1>
+    </div>
+
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <div class="footer">
+      <p>You're receiving this because you subscribed to our newsletter.</p>
+      <p><a href="{$unsubscribe}">Unsubscribe</a></p>
+    </div>
+  </div>
+</body>
+</html>
