@@ -21,13 +21,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCmQTYGuHZfHQf5yOqzNDC04WSNShxa_-w",
-  authDomain: "novaresearch-75a0e.firebaseapp.com",
-  projectId: "novaresearch-75a0e",
-  storageBucket: "novaresearch-75a0e.firebasestorage.app",
-  messagingSenderId: "1089882165756",
-  appId: "1:1089882165756:web:ee338dcddd8c94a7fea279",
-  measurementId: "G-DSQPBFGJJQ",
+  apiKey: "__FIREBASE_API_KEY__",
+  authDomain: "__FIREBASE_AUTH_DOMAIN__",
+  projectId: "__FIREBASE_PROJECT_ID__",
+  storageBucket: "__FIREBASE_STORAGE_BUCKET__",
+  messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
+  appId: "__FIREBASE_APP_ID__",
+  measurementId: "__FIREBASE_MEASUREMENT_ID__",
 };
 
 const app = initializeApp(firebaseConfig);
