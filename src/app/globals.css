@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a24;
+    --border-color: #2a2a3a;
+    --text-primary: #f0f0f5;
+    --text-secondary: #8888a0;
+    --accent-primary: #6366f1;
+    --accent-success: #10b981;
+    --accent-warning: #f59e0b;
+    --accent-danger: #ef4444;
+    --accent-cyan: #06b6d4;
+  }
+
+  .light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --border-color: #dee2e6;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background-primary text-text-primary antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-secondary;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-accent-primary text-white rounded-md font-medium 
+           hover:bg-opacity-90 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-transparent border border-border text-text-primary rounded-md font-medium
+           hover:bg-background-tertiary transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-accent-danger text-white rounded-md font-medium
+           hover:bg-opacity-90 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-accent-danger focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+
+  .btn-success {
+    @apply px-4 py-2 bg-accent-success text-white rounded-md font-medium
+           hover:bg-opacity-90 transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-accent-success focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+
+  .card {
+    @apply bg-background-secondary border border-border rounded-lg p-6 shadow-card;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 bg-background-tertiary border border-border rounded-md
+           text-text-primary placeholder-text-secondary
+           focus:outline-none focus:ring-2 focus:ring-accent-primary focus:border-transparent
+           transition-all duration-150;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-text-secondary mb-1;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-accent-primary/20 text-accent-primary;
+  }
+
+  .badge-success {
+    @apply bg-accent-success/20 text-accent-success;
+  }
+
+  .badge-warning {
+    @apply bg-accent-warning/20 text-accent-warning;
+  }
+
+  .badge-danger {
+    @apply bg-accent-danger/20 text-accent-danger;
+  }
+
+  .badge-cyan {
+    @apply bg-accent-cyan/20 text-accent-cyan;
+  }
+
+  .workflow-stage {
+    @apply flex flex-col items-center gap-2 p-4 rounded-lg transition-all duration-200;
+  }
+
+  .workflow-stage-active {
+    @apply bg-accent-primary/20 border border-accent-primary;
+  }
+
+  .workflow-stage-completed {
+    @apply bg-accent-success/10 border border-accent-success/30;
+  }
+
+  .workflow-stage-pending {
+    @apply bg-background-tertiary border border-border;
+  }
+}
+
+@layer utilities {
+  .gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-accent-cyan;
+  }
+
+  .glass {
+    @apply bg-background-secondary/80 backdrop-blur-lg;
+  }
+}
