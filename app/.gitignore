@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+dist/
+build/
+
+# Local secrets/config
+.env
+.env.local
+firebase-config.js
+
+# Python cache if local tooling is used
+__pycache__/
+*.pyc

@@ -1,0 +1,10 @@
+{
+  "name": "nova-research-web",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 3000",
+    "build": "echo 'Static app: no build step required'"
+  }
+}
