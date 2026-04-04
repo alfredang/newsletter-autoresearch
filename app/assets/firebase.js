@@ -20,13 +20,15 @@ import {
   where,
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-const firebaseConfig = window.FIREBASE_CONFIG;
-
-if (!firebaseConfig || !firebaseConfig.apiKey || !firebaseConfig.projectId) {
-  throw new Error(
-    "Firebase config is missing. Copy firebase-config.example.js to firebase-config.js and fill your Firebase values."
-  );
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyCmQTYGuHZfHQf5yOqzNDC04WSNShxa_-w",
+  authDomain: "novaresearch-75a0e.firebaseapp.com",
+  projectId: "novaresearch-75a0e",
+  storageBucket: "novaresearch-75a0e.firebasestorage.app",
+  messagingSenderId: "1089882165756",
+  appId: "1:1089882165756:web:ee338dcddd8c94a7fea279",
+  measurementId: "G-DSQPBFGJJQ",
+};
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
