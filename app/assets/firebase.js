@@ -1,12 +1,11 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
 import {
   getAuth,
   GoogleAuthProvider,
-  GithubAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
   signOut,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import {
   addDoc,
   collection,
@@ -19,7 +18,7 @@ import {
   setDoc,
   updateDoc,
   where,
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = window.FIREBASE_CONFIG;
 
@@ -34,7 +33,6 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 
 export function onAuthChange(handler) {
   return onAuthStateChanged(auth, handler);
@@ -42,12 +40,6 @@ export function onAuthChange(handler) {
 
 export async function signInWithGoogle() {
   const credential = await signInWithPopup(auth, googleProvider);
-  await upsertUserProfile(credential.user);
-  return credential.user;
-}
-
-export async function signInWithGithub() {
-  const credential = await signInWithPopup(auth, githubProvider);
   await upsertUserProfile(credential.user);
   return credential.user;
 }

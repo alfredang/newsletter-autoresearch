@@ -9,7 +9,6 @@ import {
   query,
   serverTimestamp,
   setDoc,
-  signInWithGithub,
   signInWithGoogle,
   signOutUser,
   updateDoc,
@@ -141,7 +140,7 @@ async function renderLanding() {
       </div>
       <div class="grid grid-3 mt-6">
         <div class="card"><h3>10x faster</h3><p class="muted mt-2">Iterate in minutes.</p></div>
-        <div class="card"><h3>Social login</h3><p class="muted mt-2">Google + GitHub with Firebase.</p></div>
+        <div class="card"><h3>Social login</h3><p class="muted mt-2">Google sign-in with Firebase.</p></div>
         <div class="card"><h3>Decision loop</h3><p class="muted mt-2">Keep or discard each iteration.</p></div>
       </div>
     </section>
@@ -158,7 +157,6 @@ async function renderSignIn() {
         <p class="muted mt-2">Sign in with Firebase social login.</p>
         <div class="btn-row mt-6">
           <button class="btn btn-primary" id="google-signin">Continue with Google</button>
-          <button class="btn btn-secondary" id="github-signin">Continue with GitHub</button>
         </div>
         <p class="muted mt-4">You will be redirected to your dashboard after sign-in.</p>
       </div>
@@ -169,10 +167,7 @@ async function renderSignIn() {
     await signInWithGoogle();
     navigate("/dashboard");
   };
-  document.getElementById("github-signin").onclick = async () => {
-    await signInWithGithub();
-    navigate("/dashboard");
-  };
+
 }
 
 async function renderDashboard() {
